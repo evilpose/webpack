@@ -1,0 +1,12 @@
+@import './a.css';
+
+body{
+  background-color: antiquewhite;
+  /* transform: rotate(45deg); */
+}
+
+div{
+  height: 500px;
+  width: 500px;
+  background: url('./img/img.jpg');
+}

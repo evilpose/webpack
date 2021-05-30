@@ -1,0 +1,13 @@
+body{
+  color: aquamarine;
+}
+body{
+  background-color: antiquewhite;
+  /* transform: rotate(45deg); */
+}
+
+div{
+  height: 500px;
+  width: 500px;
+  background: url(https://bbb.bb/0a934633336b08ca672bdeef81d97fd4.jpg);
+}
