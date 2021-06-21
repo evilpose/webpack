@@ -25,7 +25,28 @@ class Compiler{
     this.root = process.cwd();
   }
   getSource(modulePath){
-    return fs.readFileSync(modulePath, 'utf8')
+    let rules = this.config.modules.rules;
+    let content = fs.readFileSync(modulePath, 'utf8');
+    // 拿到每一个规则来处理
+    for(let i = 0; i < rules.length; i++){
+      let rule = rules[i];
+      let { test, use } = rule;
+      let len = use.length - 1;
+      if (test.test(modulePath)) {  // 匹配就应该通过loader去转换
+        // 获取对应的loader函数
+        function normalLoader(){
+          let loader = require(use[len--]);
+          // 递归调用Loader实现转换功能
+          content = loader(content);
+          console.log(content);
+          if(len>=0){
+            normalLoader()
+          }
+        } 
+        normalLoader();
+      }
+    }
+    return content;
   }
   // 解析源码
   parse(source, parentPath){  // AST解析语法树

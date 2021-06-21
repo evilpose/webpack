@@ -69,6 +69,8 @@
     (function(module, exports, __webpack_require__) {
        eval(`let str = __webpack_require__("./src\\a.js");
 
+__webpack_require__("./src\\index.less");
+
 console.log(str);`);
     }),
   
@@ -82,6 +84,13 @@ module.exports = 'a' + b;`);
     "./src\base\b.js":
     (function(module, exports, __webpack_require__) {
        eval(`module.exports = 'b';`);
+    }),
+  
+    "./src\index.less":
+    (function(module, exports, __webpack_require__) {
+       eval(`let style = document.createElement('style');
+style.innerHTML = "body {\\n  background: red;\\n}\\n";
+document.head.appendChild(style);`);
     }),
   
 });
