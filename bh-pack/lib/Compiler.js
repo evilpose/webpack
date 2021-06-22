@@ -5,7 +5,7 @@ let t = require('@babel/types');
 let traverse = require('@babel/traverse').default;
 let generator = require('@babel/generator').default;
 let ejs = require('ejs');
-
+let { SyncHook } = require('tapable');
 
 // babylon 主要把源码转换成ast
 // @babel/traverse 
@@ -23,6 +23,23 @@ class Compiler{
     this.entry = config.entry;  // 入口路径
     // 工作路径
     this.root = process.cwd();
+    this.hooks = {
+      entryOption: new SyncHook(),
+      compile: new SyncHook(),
+      afterCompile: new SyncHook(),
+      afterPlugins: new SyncHook(),
+      run: new SyncHook(),
+      emit: new SyncHook(),
+      done: new SyncHook()
+    }
+    // 如果传递了plugins参数
+    let plugins = this.config.plugins;
+    if(Array.isArray(plugins)){
+      plugins.forEach(plugin => {
+        plugin.apply(this)
+      })
+    }
+    this.hooks.afterPlugins.call();
   }
   getSource(modulePath){
     let rules = this.config.modules.rules;
@@ -38,7 +55,7 @@ class Compiler{
           let loader = require(use[len--]);
           // 递归调用Loader实现转换功能
           content = loader(content);
-          console.log(content);
+          // console.log(content);
           if(len>=0){
             normalLoader()
           }
@@ -100,12 +117,17 @@ class Compiler{
     fs.writeFileSync(main, this.assets[main]);
   }
   run(){
+    this.hooks.run.call();
     // 执行 并且创建模块的依赖关系
+    this.hooks.compile.call();
     this.buildModules(path.resolve(this.root, this.entry), true);
-    console.log(this.modules, this.entryId);
+    // console.log(this.modules, this.entryId);
+    this.hooks.afterCompile.call();
 
     // 发射一个文件 打包后的文件
     this.emitFile();
+    this.hooks.emit.call();
+    this.hooks.done.call();
   }
 }
 

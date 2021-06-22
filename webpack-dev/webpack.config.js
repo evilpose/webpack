@@ -1,5 +1,20 @@
-const { resolve } = require('path');
 let path = require('path');
+class P {
+  apply(compiler){
+    console.log('start-emit');
+    compiler.hooks.emit.tap('emit', function(params){
+      console.log('emit');
+    })
+  }
+};
+class P1 {
+  apply(compiler){
+    console.log('start-afterPlugins');
+    compiler.hooks.afterPlugins.tap('afterPlugins', function(params){
+      console.log('afterPlugins');
+    })
+  }
+};
 
 module.exports = {
   mode: 'development',
@@ -18,5 +33,9 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    new P(),
+    new P1()
+  ]
 }
