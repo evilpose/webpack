@@ -8,8 +8,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   resolveLoader: {
+    // loader 加载的位置 node_modules 找不到就去 loaders找
     modules:['node_modules', path.resolve(__dirname, 'loaders')]
-    // 别名
+    // 别名 loader1 可以供下面使用
     // alias: {
     //   loader1: path.resolve(__dirname, 'loaders', 'loader1.js')
     // }
