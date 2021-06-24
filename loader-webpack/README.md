@@ -8,3 +8,7 @@
 5.  !：忽略normalloader
     -!：忽略preloader和normalloader
     !!：忽略所有loader（pre / noraml / post ）
+
+6. babel-loader 的实现，使用loader-utils工具类获取 在 babel-loader 的 loader 的 options ，然后使用 bebel/core 对代码进行ast解析并进行babel的处理，如果有sourceMap就设置为true，然后异步输出。
+
+7. banner-loader 的实现，先使用schema-utils工具类对loader的参数进行校验是否格式正确，然后使用 addDependency 添加文件依赖监听，异步读取模板文件对添加到源码头部，或者把手动添加的注释添加上，并输出。
