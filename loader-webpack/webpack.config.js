@@ -24,7 +24,7 @@ module.exports = {
         use: {
           loader: 'loader1'
         },
-        enforce: 'pre'
+        // enforce: 'pre'
       },
       {
         test: /\.js$/,
@@ -37,7 +37,7 @@ module.exports = {
         use: {
           loader: 'loader3'
         },
-        enforce: 'post'
+        // enforce: 'post'
       }
       // { 
       //   test: /\.js$/,
