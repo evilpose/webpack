@@ -7,15 +7,20 @@ console.log('hello');
 
 // loader 默认是由两部分组成的 pitch normal
 
-class bh {
-  constructor(){
-    this.name = 'bh';
-  }
-  getName(){
-    return this.name;
-  }
-};
+// class bh {
+//   constructor(){
+//     this.name = 'bh';
+//   }
+//   getName(){
+//     return this.name;
+//   }
+// };
 
-let bu = new bh();
+// let bu = new bh();
 
-console.log(bu.getName());
+// console.log(bu.getName());
+
+import p from './111.jpg';
+let img = document.createElement('img');
+img.src = p;
+document.body.appendChild(img);

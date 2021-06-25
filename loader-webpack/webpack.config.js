@@ -16,9 +16,21 @@ module.exports = {
     // }
   },
   devtool: 'source-map',
-  watch: true,
+  // watch: true,
   module: {
     rules: [
+      {
+        test: /\.jpg$/,
+        // 目的就是根据图片生成一个md5  发射到dist目录下  file-loader 还会返回当前的图片路径
+        // use: 'file-loader'
+        // url-loader 1) file-loader 会处理路径
+        use: {
+          loader:'url-loader',
+          options: {
+            limit: 200*1024
+          }
+        }
+      },
       {
         test: /\.js$/,
         use: {  /** bh */
