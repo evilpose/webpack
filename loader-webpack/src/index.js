@@ -17,10 +17,12 @@ console.log('hello');
 // };
 
 // let bu = new bh();
-
 // console.log(bu.getName());
 
-import p from './111.jpg';
-let img = document.createElement('img');
-img.src = p;
-document.body.appendChild(img);
+
+// import p from './111.jpg';
+// let img = document.createElement('img');
+// img.src = p;
+// document.body.appendChild(img);
+
+import './index.less';

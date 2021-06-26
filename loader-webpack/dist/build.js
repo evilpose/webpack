@@ -86,6 +86,21 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./loaders/css-loader.js!./loaders/less-loader.js!./src/index.less":
+/*!*************************************************************************!*\
+  !*** ./loaders/css-loader.js!./loaders/less-loader.js!./src/index.less ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+let list = []
+list.push("body {\n  background: red;\n  background: ")
+list.push('url('+__webpack_require__(/*! ./111.jpg */ "./src/111.jpg")+')')
+list.push(";\n  background-repeat: no-repeat;\n}\n")
+module.exports = list.join('')
+
+/***/ }),
+
 /***/ "./src/111.jpg":
 /*!*********************!*\
   !*** ./src/111.jpg ***!
@@ -106,8 +121,8 @@ module.exports="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABECAYAAAB3T
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _111_jpg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./111.jpg */ "./src/111.jpg");
-/* harmony import */ var _111_jpg__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_111_jpg__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _index_less__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.less */ "./src/index.less");
+/* harmony import */ var _index_less__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_less__WEBPACK_IMPORTED_MODULE_0__);
 /** 布哦-2021-06-25-00-16 **/ console.log('hello');
 
 // !：忽略normalloader
@@ -127,13 +142,30 @@ __webpack_require__.r(__webpack_exports__);
 // };
 
 // let bu = new bh();
-
 // console.log(bu.getName());
 
 
-let img = document.createElement('img');
-img.src = _111_jpg__WEBPACK_IMPORTED_MODULE_0___default.a;
-document.body.appendChild(img);
+// import p from './111.jpg';
+// let img = document.createElement('img');
+// img.src = p;
+// document.body.appendChild(img);
+
+
+
+/***/ }),
+
+/***/ "./src/index.less":
+/*!************************!*\
+  !*** ./src/index.less ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+    let style = document.createElement('style');
+    style.innerHTML = __webpack_require__(/*! !../loaders/css-loader.js!../loaders/less-loader.js!./index.less */ "./loaders/css-loader.js!./loaders/less-loader.js!./src/index.less");
+    document.head.appendChild(style);
+  
 
 /***/ })
 
