@@ -6,7 +6,7 @@ function loader(source) { // loader参数就是源代码
 
 module.exports = loader;
 
-module.exports.pitch = function (){
-  console.log('pitch');
-  return 'x'
-}
+// module.exports.pitch = function (){
+//   console.log('pitch');
+//   return 'x'
+// }
