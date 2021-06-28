@@ -1,3 +1,4 @@
 ## 文件名 资源大小
-- bundle.js   3860
-- index.html   263
+- main.css   32
+- bundle.js   4535
+- index.html   279
