@@ -5,6 +5,7 @@ let HtmlWebpackPlugin = require('html-webpack-plugin');
 let FileListPlugin = require('./plugin/FileListPlugin');
 let MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let InlineSourcePlugin = require('./plugin/InlineSourcePlugin');
+let UploadPlugin = require('./plugin/UploadPlugin');
 
 module.exports = {
   mode: 'development',
@@ -32,7 +33,13 @@ module.exports = {
       filename: 'list.md'
     }),
     new InlineSourcePlugin({
-      test: /\.(js|css)$/
+      match: /\.(js|css)$/
+    }),
+    new UploadPlugin({
+      bucket: '',   // 上传到哪个资源上
+      domin: '',    // 上传到哪个域名上
+      accessKey: '',// 
+      secretKey: '' // 
     })
   ]
 }

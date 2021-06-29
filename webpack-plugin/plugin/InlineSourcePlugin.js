@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 class InlineSourcePlugin{
   constructor(match){
-    this.reg = match; // 正则
+    this.reg = match.match; // 正则
   }
 
   processTag(tag, compilation){ // 处理某一个标签的
@@ -11,16 +11,22 @@ class InlineSourcePlugin{
     if(tag.tagName === 'link' && this.reg.test(tag.attributes.href)){
       newTag = {
         tagName: 'style',
+        atrributes: { type: 'text/css'}
       }
       url = tag.attributes.href;
     };
     if(tag.tagName === 'script' && this.reg.test(tag.attributes.src)){
       newTag = {
-        tagName: 'script'
+        tagName: 'script',
+        attributes: { type: 'application/javascript' }
       }
       url = tag.attributes.src;
     };
-    return tag;
+    if(url){
+      newTag.innerHTML = compilation.assets[url].source();  // 文件内容 放到innerHTML属性上
+      delete compilation.assets[url];
+    }
+    return newTag;
   }
 
   processTags(data, compilation){  // 处理引入标签的数据
@@ -32,6 +38,7 @@ class InlineSourcePlugin{
     data.bodyTags.forEach((bodyTag)=>{
       bodyTags.push(this.processTag(bodyTag, compilation));
     });
+    console.log({...data, headTags, bodyTags});
     return {...data, headTags, bodyTags};
   }
 
