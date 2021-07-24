@@ -1,6 +1,50 @@
 /******/ (function(modules) { // webpackBootstrap
+/******/ 	// install a JSONP callback for chunk loading
+/******/ 	function webpackJsonpCallback(data) {
+/******/ 		var chunkIds = data[0];
+/******/ 		var moreModules = data[1];
+/******/
+/******/
+/******/ 		// add "moreModules" to the modules object,
+/******/ 		// then flag all "chunkIds" as loaded and fire callback
+/******/ 		var moduleId, chunkId, i = 0, resolves = [];
+/******/ 		for(;i < chunkIds.length; i++) {
+/******/ 			chunkId = chunkIds[i];
+/******/ 			if(installedChunks[chunkId]) {
+/******/ 				resolves.push(installedChunks[chunkId][0]);
+/******/ 			}
+/******/ 			installedChunks[chunkId] = 0;
+/******/ 		}
+/******/ 		for(moduleId in moreModules) {
+/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+/******/ 				modules[moduleId] = moreModules[moduleId];
+/******/ 			}
+/******/ 		}
+/******/ 		if(parentJsonpFunction) parentJsonpFunction(data);
+/******/
+/******/ 		while(resolves.length) {
+/******/ 			resolves.shift()();
+/******/ 		}
+/******/
+/******/ 	};
+/******/
+/******/
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
+/******/
+/******/ 	// object to store loaded and loading chunks
+/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 	// Promise = chunk loading, 0 = chunk loaded
+/******/ 	var installedChunks = {
+/******/ 		"main": 0
+/******/ 	};
+/******/
+/******/
+/******/
+/******/ 	// script path function
+/******/ 	function jsonpScriptSrc(chunkId) {
+/******/ 		return __webpack_require__.p + "" + chunkId + ".bundle." + "28cde4dd" + ".js"
+/******/ 	}
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -78,6 +122,16 @@
 /******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// on error function for async loading
+/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
+/******/
+/******/ 	var jsonpArray = window["webpackJsonp"] = window["webpackJsonp"] || [];
+/******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
+/******/ 	jsonpArray.push = webpackJsonpCallback;
+/******/ 	jsonpArray = jsonpArray.slice();
+/******/ 	for(var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
+/******/ 	var parentJsonpFunction = oldJsonpFunction;
 /******/
 /******/
 /******/ 	// Load entry module and return exports
@@ -3617,7 +3671,18 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _img_img_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./img/img.jpg */ \"./src/img/img.jpg\");\n/* harmony import */ var _img_img_jpg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_img_img_jpg__WEBPACK_IMPORTED_MODULE_2__);\n\n\nvar _class;\n\n// webpack 打包我们的图片\n// 1 在js中创建图片赖引入\n// 2 把图片引入，返回的结果是一个新的图片地址\n// file-loader 默认会在内部生成一张图片 到 build 目录下\n// 把生成的图片的名字返回回来\n\n\nconsole.log(_img_img_jpg__WEBPACK_IMPORTED_MODULE_2___default.a);\nvar image = new Image();\nimage.src = _img_img_jpg__WEBPACK_IMPORTED_MODULE_2___default.a;\ndocument.body.appendChild(image); // 2 在css引入  bgc(url)\n// 3 <img src=\"\" />\n// 4 \n// import $ from 'jquery'; \n// // expose-loader 暴露 全局的 loader 内联的 loader\n// // pre 前面执行的 loader   normal 普通loader  内联loader  后置 postloader\n// console.log($); // 在每个模块注入 $ 对象\n// console.log(window.$);\n\n/**\r\n * 1 expose-loader 暴露到 window 上\r\n * 2 providePlugin 给每个人提供一个 $\r\n * 3 引入不打包\r\n */\n\nvar str = __webpack_require__(/*! ./a.js */ \"./src/a.js\");\n\nconsole.log(str); // require('./index.css');\n// require('./index.less');\n\n__webpack_require__(/*! @babel/polyfill */ \"./node_modules/@babel/polyfill/lib/index.js\");\n\nvar fn = function fn() {\n  console.log('log');\n};\n\nfn();\n\nvar A = log(_class = function A() {\n  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, A);\n\n  this.a = 1;\n}) || _class;\n\nvar a = new A();\nconsole.log(a.a);\n\nfunction log(target) {\n  console.log(target, '23');\n}\n\n'aaaa'.includes('a');\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ \"./node_modules/@babel/runtime/helpers/classCallCheck.js\");\n/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _img_img_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./img/img.jpg */ \"./src/img/img.jpg\");\n/* harmony import */ var _img_img_jpg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_img_img_jpg__WEBPACK_IMPORTED_MODULE_2__);\n\n\nvar _class;\n\n// webpack 打包我们的图片\n// 1 在js中创建图片赖引入\n// 2 把图片引入，返回的结果是一个新的图片地址\n// file-loader 默认会在内部生成一张图片 到 build 目录下\n// 把生成的图片的名字返回回来\n\n\nconsole.log(_img_img_jpg__WEBPACK_IMPORTED_MODULE_2___default.a);\nvar image = new Image();\nimage.src = _img_img_jpg__WEBPACK_IMPORTED_MODULE_2___default.a;\ndocument.body.appendChild(image);\nPromise.resolve(/*! import() */).then(__webpack_require__.t.bind(null, /*! jquery */ \"jquery\", 7)).then(function (component) {\n  console.log(component);\n}); // 2 在css引入  bgc(url)\n// 3 <img src=\"\" />\n// 4 \n// import $ from 'jquery'; \n// // expose-loader 暴露 全局的 loader 内联的 loader\n// // pre 前面执行的 loader   normal 普通loader  内联loader  后置 postloader\n// console.log($); // 在每个模块注入 $ 对象\n// console.log(window.$);\n\n/**\r\n * 1 expose-loader 暴露到 window 上\r\n * 2 providePlugin 给每个人提供一个 $\r\n * 3 引入不打包\r\n */\n\nvar str = __webpack_require__(/*! ./a.js */ \"./src/a.js\");\n\nconsole.log(str); // require('./index.css');\n// require('./index.less');\n\n__webpack_require__(/*! @babel/polyfill */ \"./node_modules/@babel/polyfill/lib/index.js\");\n\nvar fn = function fn() {\n  console.log('log');\n};\n\nfn();\n\nvar A = log(_class = function A() {\n  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, A);\n\n  this.a = 1;\n}) || _class;\n\nvar a = new A();\nconsole.log(a.a);\n\nfunction log(target) {\n  console.log(target, '23');\n}\n\n'aaaa'.includes('a');\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "jquery":
+/*!********************!*\
+  !*** external "$" ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = $;\n\n//# sourceURL=webpack:///external_%22$%22?");
 
 /***/ })
 

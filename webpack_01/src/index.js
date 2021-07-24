@@ -9,6 +9,10 @@ console.log(logo);
 let image = new Image();
 image.src = logo;
 document.body.appendChild(image)
+
+import $ from 'jquery'
+console.log($);
+
 // 2 在css引入  bgc(url)
 // 3 <img src="" />
 // 4 
@@ -26,33 +30,33 @@ document.body.appendChild(image)
  */
 
 
-let str = require('./a.js');
+// let str = require('./a.js');
 
-console.log(str);
+// console.log(str);
 
-// require('./index.css');
+// // require('./index.css');
 
-// require('./index.less');
+// // require('./index.less');
 
-require('@babel/polyfill');
-
-
-let fn = () => {
-  console.log('log')
-}
-
-fn()
-
-@log
-class A{
-  a = 1;
-}
-let a = new A();
-console.log(a.a);
-
-function log(target) {
-  console.log(target, '23');
-}
+// require('@babel/polyfill');
 
 
-'aaaa'.includes('a')
+// let fn = () => {
+//   console.log('log')
+// }
+
+// fn()
+
+// @log
+// class A{
+//   a = 1;
+// }
+// let a = new A();
+// console.log(a.a);
+
+// function log(target) {
+//   console.log(target, '23');
+// }
+
+
+// 'aaaa'.includes('a')

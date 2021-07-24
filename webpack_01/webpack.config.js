@@ -5,6 +5,7 @@ let MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let OptimizeCss = require('optimize-css-assets-webpack-plugin');
 let UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 let webpack = require('webpack');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { web } = require('webpack');
 
 module.exports = {
@@ -45,7 +46,8 @@ module.exports = {
     }),
     // new webpack.ProvidePlugin({   // 在每个模块中都注入 $
     //   $: 'jquery'
-    // })
+    // }),
+    new BundleAnalyzerPlugin()
   ],
   externals: {
     jquery: '$'
